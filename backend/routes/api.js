@@ -17,13 +17,22 @@ const { ScrappingFromUrl } = require('./controllers');
 const { SignInWithGoogle } = require('./controllers');
 
 
-const{CreateRecipe,ReadRecipe,ReadOneRecipe} = require('./controllers');
+const { CreateRecipe, ReadRecipe, ReadOneRecipe } = require('./controllers');
+
+const { CreatePlayer, ReadPlayer } = require('./controllers');
+const { CreateTournament, ReadTournament } = require('./controllers');
 
 /**
  * Routes
  */
 
-router.post('/recipe',scrapper, CreateRecipe);
+router.post('/tournament', CreateTournament);
+router.get('/tournament', ReadTournament);
+
+router.post('/player', CreatePlayer);
+router.get('/player', ReadPlayer);
+
+router.post('/recipe', scrapper, CreateRecipe);
 router.post('/recipe/read', ReadRecipe);
 router.post('/recipe/readone', ReadOneRecipe);
 
