@@ -25,14 +25,14 @@ const attributes = {
     descripton: {
         type: String
     },
-    timestamp_start:{
+    timestamp_start: {
         type: String
     },
-    timestamp_end:{
+    timestamp_end: {
         type: String
     },
-    players:{
-        type:[String]
+    players: {
+        type: [String]
     }
 };
 

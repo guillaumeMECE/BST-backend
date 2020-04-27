@@ -13,7 +13,7 @@ const app = require('./app');
  */
 
 const port = process.env.PORT || 3030;
-const mongoDbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/bst' ;
+const mongoDbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/bst';
 
 /**
  * Connect to MongoDB database.
