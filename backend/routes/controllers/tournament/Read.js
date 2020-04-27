@@ -18,11 +18,8 @@ const secure = async (req) => {
 
     if (req.body.tag === undefined || req.body.tag === null) {
         inputs.tag = 'all';
-        console.log('x1');
-
     } else {
         inputs.tag = req.body.tag;
-        console.log('x2');
     }
 
     return inputs;
