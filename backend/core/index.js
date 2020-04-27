@@ -4,5 +4,6 @@ module.exports = {
 
     // Helpers
     secureInput: require('./helpers/secureInput'),
-    formatChecker: require('./helpers/formatChecker')
+    formatChecker: require('./helpers/formatChecker'),
+    utils: require('./helpers/utils')
 };

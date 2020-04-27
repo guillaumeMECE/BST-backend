@@ -6,28 +6,23 @@ const router = Router();
 /**
  * Middlewares imports
  */
-const { scrapper } = require('@middlewares');
 
 /**
  * Controllers imports
  */
-
-// AUTH IMPORT
-const { ScrappingFromUrl } = require('./controllers');
-const { SignInWithGoogle } = require('./controllers');
-
-
-const{CreateRecipe,ReadRecipe,ReadOneRecipe} = require('./controllers');
+const { CreatePlayer, ReadPlayer } = require('./controllers');
+const { CreateTournament, ReadTournament, ResultTournament } = require('./controllers');
 
 /**
  * Routes
  */
 
-router.post('/recipe',scrapper, CreateRecipe);
-router.post('/recipe/read', ReadRecipe);
-router.post('/recipe/readone', ReadOneRecipe);
+router.post('/tournament', CreateTournament);
+router.get('/tournament', ReadTournament);
+router.get('/tournament/result', ResultTournament);
 
-router.post('/signin/google', SignInWithGoogle);
-router.post('/scrapper', ScrappingFromUrl);
+router.post('/player', CreatePlayer);
+router.get('/player', ReadPlayer);
+
 
 module.exports = router;

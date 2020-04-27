@@ -29,8 +29,25 @@ const generateUsername = (firstname, lastname, company) => {
     return firstname.concat('-', lastname, '-', company, '-', rdm);
 };
 
+const sanitizeDate = (battleTime) => {
+    // YYYYMMDDTHHMMSS.000Z
+    const sanitizeBattleTime = {};
+    sanitizeBattleTime.year = battleTime.slice(0, 4);
+    sanitizeBattleTime.month = battleTime.slice(4, 6);
+    sanitizeBattleTime.month = parseInt(sanitizeBattleTime.month, 10) - 1;
+    sanitizeBattleTime.day = battleTime.slice(6, 8);
+    sanitizeBattleTime.hour = battleTime.slice(9, 11);
+    sanitizeBattleTime.hour = parseInt(sanitizeBattleTime.hour, 10) + 2;
+    sanitizeBattleTime.min = battleTime.slice(11, 13);
+    sanitizeBattleTime.sec = battleTime.slice(13, 15);
+    // console.log(battleTime);
+    // console.log(sanitizeBattleTime);
+    return sanitizeBattleTime;
+};
+
 module.exports = {
     sanitizeString,
     sanitizeName,
     generateUsername,
+    sanitizeDate,
 };
