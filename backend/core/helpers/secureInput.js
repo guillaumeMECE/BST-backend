@@ -29,6 +29,24 @@ const generateUsername = (firstname, lastname, company) => {
     return firstname.concat('-', lastname, '-', company, '-', rdm);
 };
 
+const generateDate = (yyyymmdd, hhmm) => {
+    // YYYY-MM-DD 
+    // HH:MM
+    const sanitizeBattleTime = {};
+    const yyyymmddThhmm = yyyymmdd.concat('T', hhmm, ':00');
+
+    // sanitizeBattleTime.year = yyyymmdd.slice(0, 4);
+    // sanitizeBattleTime.month = yyyymmdd.slice(5, 7);
+    // sanitizeBattleTime.month = parseInt(sanitizeBattleTime.month, 10) - 1;
+    // sanitizeBattleTime.day = yyyymmdd.slice(8, 10);
+    // sanitizeBattleTime.hour = hhmm.slice(0, 2);
+    // sanitizeBattleTime.hour = parseInt(sanitizeBattleTime.hour, 10) + 2;
+    // sanitizeBattleTime.min = hhmm.slice(3, 5);
+    // console.log(battleTime);
+    console.log(yyyymmddThhmm);
+    return yyyymmddThhmm;
+};
+
 const sanitizeDate = (battleTime) => {
     // YYYYMMDDTHHMMSS.000Z
     const sanitizeBattleTime = {};
@@ -45,9 +63,11 @@ const sanitizeDate = (battleTime) => {
     return sanitizeBattleTime;
 };
 
+
 module.exports = {
     sanitizeString,
     sanitizeName,
     generateUsername,
     sanitizeDate,
+    generateDate
 };

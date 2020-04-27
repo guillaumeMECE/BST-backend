@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 const { TournamentModel } = require('@models');
-const { utils } = require('@core');
+const { utils, secureInput } = require('@core');
 /**
  * Request structure
  */
@@ -43,15 +43,20 @@ const secure = async (req) => {
     }
     inputs.players = req.body.players;
 
-    if (req.body.timestamp_start === undefined || req.body.timestamp_start === null) {
-        throw new Error('timestamp_start undefined/null');
+    if (req.body.date === undefined || req.body.date === null) {
+        throw new Error('date undefined/null');
     }
-    inputs.timestamp_start = req.body.timestamp_start;
+    inputs.date = req.body.date;
 
-    if (req.body.timestamp_end === undefined || req.body.timestamp_end === null) {
-        throw new Error('timestamp_end undefined/null');
+    if (req.body.t_start === undefined || req.body.t_start === null) {
+        throw new Error('t_start undefined/null');
     }
-    inputs.timestamp_end = req.body.timestamp_end;
+    inputs.t_start = req.body.t_start;
+
+    if (req.body.t_end === undefined || req.body.t_end === null) {
+        throw new Error('t_end undefined/null');
+    }
+    inputs.t_end = req.body.t_end;
 
     return inputs;
 };
@@ -61,7 +66,13 @@ const secure = async (req) => {
  */
 const process = async (inputs) => {
     try {
-        const output = await TournamentModel.create(inputs);
+        const tournament = inputs;
+        tournament.timestamp_start = secureInput.generateDate(tournament.date, tournament.t_start);
+        // tournament.timestamp_start = new Date(t_start);
+        tournament.timestamp_end = secureInput.generateDate(tournament.date, tournament.t_end);
+        // tournament.timestamp_end = new Date(t_end);
+
+        const output = await TournamentModel.create(tournament);
 
         return output;
     } catch (error) {
