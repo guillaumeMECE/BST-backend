@@ -22,7 +22,7 @@ const attributes = {
         type: String,
         required: true,
     },
-    descripton: {
+    description: {
         type: String
     },
     timestamp_start: {

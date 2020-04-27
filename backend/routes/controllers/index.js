@@ -7,5 +7,5 @@ module.exports = {
 
     CreateTournament: require('./tournament/Create'),
     ReadTournament: require('./tournament/Read'),
-
+    ResultTournament: require('./tournament/Result'),
 };

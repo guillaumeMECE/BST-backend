@@ -11,7 +11,7 @@ const router = Router();
  * Controllers imports
  */
 const { CreatePlayer, ReadPlayer } = require('./controllers');
-const { CreateTournament, ReadTournament } = require('./controllers');
+const { CreateTournament, ReadTournament, ResultTournament } = require('./controllers');
 
 /**
  * Routes
@@ -19,6 +19,7 @@ const { CreateTournament, ReadTournament } = require('./controllers');
 
 router.post('/tournament', CreateTournament);
 router.get('/tournament', ReadTournament);
+router.get('/tournament/result', ResultTournament);
 
 router.post('/player', CreatePlayer);
 router.get('/player', ReadPlayer);
