@@ -59,7 +59,6 @@ const getScoreBattlelog = (items) => {
 const comparePlayer = (a, b) => {
     if (a.score < b.score) { return 1; }
     if (a.score > b.score) { return -1; }
-    // a doit être égal à b
     return 0;
 };
 

@@ -34,7 +34,19 @@ const process = async (inputs) => {
         if (inputs.tag === 'all') {
             output = await TournamentModel.find().exec();
         } else {
-            output = await TournamentModel.find({ tag: inputs.tag }).exec();
+            const res = await TournamentModel.find({ tag: inputs.tag }).lean().exec();
+            // eslint-disable-next-line prefer-destructuring
+            output = res[0];
+
+            /**
+             * GET Tournament Results DONT REFRESH IF TOURNAMENT END 45min AGO
+             */
+            const maxTimeToRefresh = new Date(output.timestamp_end).setMinutes(new Date(output.timestamp_end).getMinutes() + 45);
+            const actualTime = new Date(Date.now()).setHours(new Date(Date.now()).getHours() + 2);
+            if (new Date(actualTime) < new Date(maxTimeToRefresh)) {
+                output.results = await utils.getTournamentResult(output);
+                await TournamentModel.updateOne({ tag: inputs.tag }, { results: output.results }).exec();
+            }
         }
 
         return output;

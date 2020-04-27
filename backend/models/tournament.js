@@ -33,6 +33,9 @@ const attributes = {
     },
     players: {
         type: [String]
+    },
+    results: {
+        type: [Object]
     }
 };
 
