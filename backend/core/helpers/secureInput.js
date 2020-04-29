@@ -59,7 +59,7 @@ const sanitizeDate = (battleTime) => {
     sanitizeBattleTime.min = battleTime.slice(11, 13);
     sanitizeBattleTime.sec = battleTime.slice(13, 15);
     // console.log(battleTime);
-    // console.log(sanitizeBattleTime);
+    console.log("Sanitize battle time", sanitizeBattleTime);
     return sanitizeBattleTime;
 };
 

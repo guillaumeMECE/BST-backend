@@ -34,6 +34,8 @@ const process = async (inputs) => {
         if (inputs.tag === 'all') {
             output = await TournamentModel.find().exec();
         } else {
+
+
             const res = await TournamentModel.find({ tag: inputs.tag }).lean().exec();
             // eslint-disable-next-line prefer-destructuring
             output = res[0];
@@ -41,9 +43,14 @@ const process = async (inputs) => {
             /**
              * GET Tournament Results DONT REFRESH IF TOURNAMENT END 45min AGO
              */
-            const maxTimeToRefresh = new Date(output.timestamp_end).setMinutes(new Date(output.timestamp_end).getMinutes() + 45);
+            // const maxTimeToRefresh = new Date(output.timestamp_end).setMinutes(new Date(output.timestamp_end).getMinutes() + 45).setHours(new Date(output.timestamp_end).getHours() + 3);
+            const maxTimeToRefresh = new Date(output.timestamp_end).setHours(new Date(output.timestamp_end).getHours() + 3);
+
+            console.log("maxTimeToRefresh", new Date(maxTimeToRefresh));
             const actualTime = new Date(Date.now()).setHours(new Date(Date.now()).getHours() + 2);
+            console.log("actualTime", new Date(actualTime));
             if (new Date(actualTime) < new Date(maxTimeToRefresh)) {
+                console.log("OUI JE PASSE");
                 output.results = await utils.getTournamentResult(output);
                 await TournamentModel.updateOne({ tag: inputs.tag }, { results: output.results }).exec();
             }
