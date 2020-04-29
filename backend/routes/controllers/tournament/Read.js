@@ -16,10 +16,10 @@ const secure = async (req) => {
 
     const inputs = {};
 
-    if (req.body.tag === undefined || req.body.tag === null) {
+    if (req.params.tag === undefined || req.params.tag === null) {
         inputs.tag = 'all';
     } else {
-        inputs.tag = req.body.tag;
+        inputs.tag = req.params.tag;
     }
 
     return inputs;
