@@ -18,6 +18,7 @@ const { CreateTournament, ReadTournament, ResultTournament } = require('./contro
  */
 
 router.post('/tournament', CreateTournament);
+router.get('/tournament', ReadTournament);
 router.get('/tournament/:tag', ReadTournament);
 router.get('/tournament/result', ResultTournament);
 
