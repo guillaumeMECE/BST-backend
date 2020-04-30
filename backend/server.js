@@ -13,7 +13,7 @@ const app = require('./app');
  * PROXY
  */
 
-const proxy = url.parse(process.env.QUOTAGUARD_URL);
+const proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
 const target = url.parse('http://ip.jsontest.com/');
 
 const options = {
