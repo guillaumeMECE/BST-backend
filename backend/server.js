@@ -5,8 +5,33 @@ require('module-alias/register');
 require('dotenv').config({ path: './' });
 
 const http = require('http');
+const url = require('url');
 const mongoose = require('mongoose');
 const app = require('./app');
+
+/**
+ * PROXY
+ */
+
+const proxy = url.parse(process.env.QUOTAGUARD_URL);
+const target = url.parse('http://ip.jsontest.com/');
+
+const options = {
+    hostname: proxy.hostname,
+    port: proxy.port || 80,
+    path: target.href,
+    headers: {
+        // eslint-disable-next-line no-buffer-constructor
+        'Proxy-Authorization': `Basic ${new Buffer(proxy.auth).toString('base64')}`,
+        'Host': target.hostname
+    }
+};
+
+http.get(options, (res) => {
+    res.pipe(process.stdout);
+    return console.log('status code', res.statusCode);
+});
+
 
 /**
  * Get environment variables from .env file.
