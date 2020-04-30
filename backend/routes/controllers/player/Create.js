@@ -41,7 +41,7 @@ const core = async (inputs) => {
                     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjIxYzJjMjE3LWFmYWQtNDBhOC04Yjc2LTc0MjA3MDRmNDI4ZCIsImlhdCI6MTU4ODI0NDEyNCwic3ViIjoiZGV2ZWxvcGVyLzliYzhkNjYxLWZmMDgtZjJjMS01NTJmLTI2NzM5YTBlZjU0ZSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNTQuNzIuMTIuMSIsIjU0LjcyLjc3LjI0OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.GaAVbDa0_uVUhhV5CIQgT99LzMIvJs6eynTYbPVbp96PXT4jhtxWCCi_lHw4PqeQTmk7x8tSj8Fo6HGJGPEgog'
                 },
                 proxy: {
-                    host: '54.72.12.1',
+                    host: 'eu-west-static-03.quotaguard.com',
                     port: 9293,
                     auth: {
                         username: 'i6y3wiydfa7ieo',
