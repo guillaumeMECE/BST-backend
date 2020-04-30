@@ -51,9 +51,11 @@ const process = async (inputs) => {
             const actualTime = new Date(Date.now()).setHours(new Date(Date.now()).getHours() + 2);
             console.log("actualTime", new Date(actualTime));
             if (new Date(actualTime) < new Date(maxTimeToRefresh)) {
-                console.log("OUI JE PASSE");
-                output.results = await utils.getTournamentResult(output);
-                await TournamentModel.updateOne({ tag: inputs.tag }, { results: output.results }).exec();
+                if (new Date(Date.now()) > new Date(output.last_update).setMinutes(new Date(output.last_update) + 2)) {
+                    console.log("OUI JE PASSE POUR REFRESH ICII LA REGARDE");
+                    output.results = await utils.getTournamentResult(output);
+                    await TournamentModel.updateOne({ tag: inputs.tag }, { results: output.results, last_update: new Date(Date.now()) }).exec();
+                }
             }
         }
 

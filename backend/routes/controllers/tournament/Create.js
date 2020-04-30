@@ -58,6 +58,8 @@ const secure = async (req) => {
     }
     inputs.t_end = req.body.t_end;
 
+    inputs.last_update = new Date(Date.now());
+
     return inputs;
 };
 

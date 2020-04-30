@@ -34,6 +34,9 @@ const attributes = {
     players: {
         type: [String]
     },
+    last_update: {
+        type: String
+    },
     results: {
         type: [Object]
     }
