@@ -65,10 +65,13 @@ const comparePlayer = (a, b) => {
 const getPlayerName = (tag, battlelog) => {
     let name = tag;
     console.log('getPlayerName tag',tag);
-    console.log('getPlayerName battlelog',battlelog);
+    console.log('getPlayerName battlelog',battlelog[0].battle.players);
 
     battlelog[0].battle.players.forEach((player) => {
-        if (player.tag === tag) {
+        console.log('foreach',player.name);
+        console.log('foreach',player.tag);
+        console.log('foreach',tag);
+        if (player.tag === '#'.concat(tag)) {
             name = player.name;
         }
     });
