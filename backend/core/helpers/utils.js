@@ -67,7 +67,7 @@ const getPlayerName = (tag, battlelog) => {
     console.log('getPlayerName tag',tag);
     console.log('getPlayerName battlelog',battlelog);
 
-    battlelog.battle.players.forEach((player) => {
+    battlelog[0].battle.players.forEach((player) => {
         if (player.tag === tag) {
             name = player.name;
         }
@@ -127,7 +127,7 @@ const getTournamentResult = async (tournament) => {
         console.log('timestampTrunkBattlelog', timestampTrunkBattlelog);
         
         // GET PLAYER NAME WITH TAG IN BATTLELOG
-        playerResult.name = getPlayerName(playerResult.tag, timestampTrunkBattlelog);
+        playerResult.name = getPlayerName(playerResult.tag, battlelog.data.items);
 
 
         // const dbPlayer = await PlayerModel.find({ tag: playerResult.tag }).exec();
