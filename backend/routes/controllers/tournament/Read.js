@@ -47,10 +47,12 @@ const process = async (inputs) => {
             // const maxTimeToRefresh = new Date(output.timestamp_end).setMinutes(new Date(output.timestamp_end).getMinutes() + 45).setHours(new Date(output.timestamp_end).getHours() + 3);
             const maxTimeToRefresh = new Date(output.timestamp_end).setHours(new Date(output.timestamp_end).getHours() + 3);
 
-            console.log("maxTimeToRefresh", new Date(maxTimeToRefresh));
+            // console.log("maxTimeToRefresh", new Date(maxTimeToRefresh));
             const actualTime = new Date(Date.now()).setHours(new Date(Date.now()).getHours() + 2);
-            console.log("actualTime", new Date(actualTime));
+            // console.log("actualTime", new Date(actualTime));
             if (new Date(actualTime) < new Date(maxTimeToRefresh)) {
+                console.log("REFRESH NOW", new Date(Date.now()));
+                console.log("REFRESH NOW+2", new Date(output.last_update).setMinutes(new Date(output.last_update) + 2));
                 if (new Date(Date.now()) > new Date(output.last_update).setMinutes(new Date(output.last_update) + 2)) {
                     console.log("OUI JE PASSE POUR REFRESH ICII LA REGARDE");
                     output.results = await utils.getTournamentResult(output);
