@@ -75,7 +75,15 @@ const getTournamentResult = async (tournament) => {
         const battlelog = await axios.get(`https://api.brawlstars.com/v1/players/%23${player}/battlelog`, {
             headers: {
                 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjhkODVjYmI2LWRiZTEtNDQ1OC1iYTViLWYwZTBkZmY2NDY5YSIsImlhdCI6MTU4ODIwODE5OCwic3ViIjoiZGV2ZWxvcGVyLzliYzhkNjYxLWZmMDgtZjJjMS01NTJmLTI2NzM5YTBlZjU0ZSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNzguMTI2LjE3Ni4yNDkiLCIxMDkuMTMuMTQ3LjY1IiwiOTkuODEuMTM1LjMyIiwiOTkuODAuMTgzLjExNyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.wN5t-Becil_zV-Fo4LshzOUhnPGqQhlMnQlvG_BFsICdAQ3D8Ge8ik9GLdwC1JpMgMMs9GmGeN-E92Z6iUS_xw'
-            }
+            },
+            proxy: {
+                host: '54.72.12.1',
+                port: 9293,
+                auth: {
+                    username: 'i6y3wiydfa7ieo',
+                    password: 'bb2ebeh87jjgozue4r5kppdky89e8h'
+                }
+            },
         });
 
 

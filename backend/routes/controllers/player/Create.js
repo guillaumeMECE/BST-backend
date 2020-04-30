@@ -1,6 +1,7 @@
 
 const axios = require('axios');
 
+
 const { PlayerModel } = require('@models');
 
 /**
@@ -27,18 +28,26 @@ const secure = async (req) => {
 /**
  * PROCESS :
  */
-const process = async (inputs) => {
+const core = async (inputs) => {
     try {
         // const output = {};
         let output;
         // console.log(process.env.TOKEN_API_BRAWLSTAR);
         const isExist = await PlayerModel.find({ tag: inputs.tag }).exec();
         if (isExist.length === 0) {
-            console.log( `Bearer ${process.env.TOKEN_API_BRAWLSTAR}`);
+            console.log(`Bearer ${process.env.TOKEN_API_BRAWLSTAR}`);
             const res = await axios.get(`https://api.brawlstars.com/v1/players/%23${inputs.tag}`, {
                 headers: {
                     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjhkODVjYmI2LWRiZTEtNDQ1OC1iYTViLWYwZTBkZmY2NDY5YSIsImlhdCI6MTU4ODIwODE5OCwic3ViIjoiZGV2ZWxvcGVyLzliYzhkNjYxLWZmMDgtZjJjMS01NTJmLTI2NzM5YTBlZjU0ZSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiNzguMTI2LjE3Ni4yNDkiLCIxMDkuMTMuMTQ3LjY1IiwiOTkuODEuMTM1LjMyIiwiOTkuODAuMTgzLjExNyJdLCJ0eXBlIjoiY2xpZW50In1dfQ.wN5t-Becil_zV-Fo4LshzOUhnPGqQhlMnQlvG_BFsICdAQ3D8Ge8ik9GLdwC1JpMgMMs9GmGeN-E92Z6iUS_xw'
-                }
+                },
+                proxy: {
+                    host: '54.72.12.1',
+                    port: 9293,
+                    auth: {
+                        username: 'i6y3wiydfa7ieo',
+                        password: 'bb2ebeh87jjgozue4r5kppdky89e8h'
+                    }
+                },
             });
             // eslint-disable-next-line no-param-reassign
             inputs.name = res.data.name;
@@ -57,7 +66,7 @@ const Create = async (req, res) => {
     try {
         const inputs = await secure(req);
 
-        const output = await process(inputs);
+        const output = await core(inputs);
 
         res.status(200).json({ output });
     } catch (error) {
