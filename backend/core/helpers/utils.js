@@ -110,8 +110,9 @@ const getTournamentResult = async (tournament) => {
         /**
          * PUT player name
          */
-        const dbPlayer = await PlayerModel.find({ tag: playerResult.tag }).exec();
-        playerResult.name = dbPlayer[0].name;
+        // const dbPlayer = await PlayerModel.find({ tag: playerResult.tag }).exec();
+        // playerResult.name = dbPlayer[0].name;
+        playerResult.name = player;
 
         /**
          * PUT score player
