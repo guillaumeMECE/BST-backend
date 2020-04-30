@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 require('module-alias/register');
-require('dotenv').config();
+require('dotenv').config({ path: './' });
 
 const http = require('http');
 const mongoose = require('mongoose');
@@ -28,6 +28,7 @@ mongoose.connect(`${mongoDbUri}`, { useNewUrlParser: true, useFindAndModify: fal
         console.log(`Connected to db: ${mongoDbUri}`);
     }
 });
+
 
 /**
  * Create HTTP server.
