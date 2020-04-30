@@ -1,3 +1,4 @@
+/* eslint-disable no-buffer-constructor */
 /**
  * Module dependencies.
  */
@@ -14,14 +15,13 @@ const app = require('./app');
  */
 
 const proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
-const target = url.parse('http://ip.jsontest.com/');
+const target = url.parse('https://bst-backend.herokuapp.com/');
 
 const options = {
     hostname: proxy.hostname,
     port: proxy.port || 80,
     path: target.href,
     headers: {
-        // eslint-disable-next-line no-buffer-constructor
         'Proxy-Authorization': `Basic ${new Buffer(proxy.auth).toString('base64')}`,
         'Host': target.hostname
     }
