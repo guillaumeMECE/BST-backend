@@ -6,30 +6,19 @@ require('module-alias/register');
 require('dotenv').config({ path: './' });
 
 const http = require('http');
-const url = require('url');
 const mongoose = require('mongoose');
+const request = require('request');
 const app = require('./app');
 
 /**
  * PROXY
  */
 
-const proxy = url.parse(process.env.QUOTAGUARDSTATIC_URL);
-const target = url.parse('https://bst-backend.herokuapp.com/');
 
-const options = {
-    hostname: proxy.hostname,
-    port: proxy.port || 80,
-    path: target.href,
-    headers: {
-        'Proxy-Authorization': `Basic ${new Buffer(proxy.auth).toString('base64')}`,
-        'Host': target.hostname
-    }
-};
+const fixieRequest = request.defaults({ 'proxy': process.env.QUOTAGUARDSTATIC_URL });
 
-http.get(options, (res) => {
-    res.pipe(process.stdout);
-    return console.log('status code', res.statusCode);
+fixieRequest('http://www.example.com', (err, res, body) => {
+    console.log(`Got response: ${res.statusCode}`);
 });
 
 
