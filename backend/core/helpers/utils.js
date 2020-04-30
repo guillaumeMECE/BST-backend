@@ -86,6 +86,8 @@ const getTournamentResult = async (tournament) => {
             },
         });
 
+        console.log('ICIIII', battlelog);
+
 
         /**
          * GET battlelog according to mode
