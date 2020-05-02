@@ -34,6 +34,7 @@ const process = async (inputs) => {
         let output;
         if (inputs.tag === 'all') {
             output = await TournamentModel.find().exec();
+            output = output.reverse();
         } else {
 
 
